@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QuietPages — React Notes</title>
+
+    <!-- Quicksand font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+   <header class="navbar">
+  <h1>📚 Journify</h1>
+  <button id="menu-toggle">☰</button>
+
+  <nav id="nav-links">
+    <a href="../index.html" class="active">Home</a>
+  </nav>
+
+  <button id="theme-toggle">🌙</button>
+</header>
+
+    <main class="container">
+      <article class="note">
+        <h1 id="what-is-react">What is React?</h1>
+        <p>
+          <strong>React</strong> (or ReactJS) is an open-source JavaScript
+          library developed by Facebook for building interactive user interfaces
+          efficiently using a component-based architecture. It lets developers
+          create reusable UI components, making development fast, scalable, and
+          organized.
+        </p>
+
+        <h2 id="features">Key Features of React</h2>
+
+        <ul class="feature-list">
+          <li>
+            <strong>JSX (JavaScript XML):</strong> JSX is a syntax extension for
+            JavaScript that allows writing HTML-like code in JavaScript files,
+            making the code readable and maintainable.
+          </li>
+          <li>
+            <strong>Component-Based Architecture:</strong> React breaks the UI
+            into reusable, independent components, simplifying code organization
+            and reuse.
+          </li>
+          <li>
+            <strong>Virtual DOM:</strong> React uses a virtual DOM to update
+            only the changed parts of the real DOM efficiently, improving
+            performance.
+          </li>
+          <li>
+            <strong>One-Way Data Binding:</strong> Data in React flows from
+            parent to child components via props, ensuring predictable and
+            easy-to-debug UI updates.
+          </li>
+          <li>
+            <strong>State Management:</strong> State is used to handle dynamic
+            data and is automatically tracked and re-rendered by React
+            components.
+          </li>
+          <li>
+            <strong>Hooks:</strong> Hooks (like <code>useState</code>,
+            <code>useEffect</code>) enable functional components to use state
+            and lifecycle features, replacing class component methods in modern
+            React.
+          </li>
+          <li>
+            <strong>High Performance:</strong> Only affected components are
+            updated, making React applications fast and efficient.
+          </li>
+        </ul>
+
+        <h2 id="why">Why React?</h2>
+
+        <p>
+          React is suitable for developing scalable applications. It encourages
+          a clean separation of concerns by splitting UI into logical components
+          and has a large ecosystem with helpful developer tools, libraries, and
+          a supportive community.
+        </p>
+
+        <section class="extras">
+          <h3>Quick code example (functional component)</h3>
+          <pre>
+            <code>
+                <span class="kw">import</span> React, { <span class="kw">useState</span> } <span class="kw">from</span> <span class="str">'react'</span>;
+
+                <span class="kw">function</span> <span class="fn">Counter</span>() {
+                <span class="kw">const</span> [count, setCount] = <span class="fn">useState</span>(<span class="num">0</span>);
+
+                <span class="kw">return</span> (
+                    &lt;<span class="tag">div</span>&gt;
+                    &lt;<span class="tag">h2</span>&gt;Count: {count}&lt;/<span class="tag">h2</span>&gt;
+                    &lt;<span class="tag">button</span> onClick={() =&gt; setCount(count + <span class="num">1</span>)}&gt;
+                        Increment
+                    &lt;/<span class="tag">button</span>&gt;
+                    &lt;/<span class="tag">div</span>&gt;
+                );
+                }
+                <span class="kw">export default</span> Counter;
+            </code>
+        </pre>
+<hr>
+         <h2>🧩 Import & Export in React</h2>
+    <p>In JavaScript and React, <code>import</code> and <code>export</code> are used to share code between files.  
+    They make your code modular and reusable — allowing you to separate logic into small, manageable parts.</p>
+
+    <ul>
+      <li><strong>export</strong> → makes code available for other files.</li>
+      <li><strong>import</strong> → brings exported code into another file.</li>
+    </ul>
+
+    <pre><code>
+<span class="kw">export</span> <span class="kw">function</span> <span class="fn">greet</span>() {
+  <span class="kw">return</span> <span class="str">"Hello, World!"</span>;
+}
+
+<span class="cmt">// or export default for single export</span>
+<span class="kw">export default</span> <span class="fn">greet</span>;
+    </code></pre>
+
+    <pre><code>
+<span class="kw">import</span> { <span class="fn">greet</span> } <span class="kw">from</span> <span class="str">'./greet.js'</span>;
+<span class="kw">import</span> <span class="fn">greet</span> <span class="kw">from</span> <span class="str">'./greet.js'</span>; <span class="cmt">// default import</span>
+
+<span class="fn">console</span>.log(<span class="fn">greet</span>()); <span class="cmt">// "Hello, World!"</span>
+    </code></pre>
+<hr>
+    <h2>⚙️ Real DOM vs Virtual DOM</h2>
+    <p>React uses a <strong>Virtual DOM</strong> — a lightweight copy of the real DOM —  
+    to efficiently update only the parts of the UI that change.</p>
+
+    <table>
+      <tr><th>Feature</th><th>Real DOM</th><th>Virtual DOM</th></tr>
+      <tr><td>Update Speed</td><td>Slower (entire UI re-rendered)</td><td>Faster (only changed parts)</td></tr>
+      <tr><td>Performance</td><td>Heavy DOM operations</td><td>Optimized updates</td></tr>
+      <tr><td>Memory</td><td>Higher usage</td><td>Lower usage</td></tr>
+      <tr><td>React’s Role</td><td>Uses directly</td><td>Manages updates efficiently</td></tr>
+    </table>
+
+    <p><strong>How it works:</strong></p>
+    <ol>
+      <li>React keeps a copy of the real DOM in memory (Virtual DOM).</li>
+      <li>When something changes, React compares old vs new Virtual DOM.</li>
+      <li>Only the changed elements are updated in the Real DOM.</li>
+    </ol>
+  </div>
+<hr>
+  <h2>⚛️ What is a Component?</h2>
+<p>
+A <strong>Component</strong> in React is an independent, reusable piece of UI.  
+Think of it like a small function that returns HTML.  
+Each component manages its own structure, style, and logic — making your app modular and easy to maintain.
+</p>
+
+<ul>
+  <li>There are two types: <strong>Functional Components</strong> and <strong>Class Components</strong>.</li>
+  <li>Functional components are most commonly used today (with Hooks).</li>
+</ul>
+
+<pre><code>
+<span class="kw">function</span> <span class="fn">Welcome</span>(<span class="kw">)</span> {
+  <span class="kw">return</span> (
+    &lt;<span class="tag">h2</span>&gt;Hello, User!&lt;/<span class="tag">h2</span>&gt;
+  );
+}
+
+<span class="kw">export default</span> <span class="fn">Welcome</span>;
+</code></pre>
+
+<pre><code>
+<span class="kw">import</span> <span class="fn">Welcome</span> <span class="kw">from</span> <span class="str">'./Welcome'</span>;
+
+<span class="fn">function</span> <span class="fn">App</span>() {
+  <span class="kw">return</span> (
+    &lt;<span class="tag">div</span>&gt;
+      &lt;<span class="tag">Welcome</span> /&gt;
+    &lt;/<span class="tag">div</span>&gt;
+  );
+}
+</code></pre>
+
+<hr>
+
+<h2>🎯 What are Props?</h2>
+<p>
+<strong>Props (Properties)</strong> are used to pass data from one component to another —  
+usually from a <em>parent</em> component to a <em>child</em> component.  
+They make components dynamic and reusable.
+</p>
+
+<ul>
+  <li>Props are <strong>read-only</strong> — you cannot modify them inside the child component.</li>
+  <li>They work just like function parameters.</li>
+</ul>
+
+<pre><code>
+<span class="kw">function</span> <span class="fn">Welcome</span>({ name }) {
+  <span class="kw">return</span> (
+    &lt;<span class="tag">h2</span>&gt;Hello, {name}!&lt;/<span class="tag">h2</span>&gt;
+  );
+}
+
+<span class="kw">export default</span> <span class="fn">Welcome</span>;
+</code></pre>
+
+<pre><code>
+<span class="kw">import</span> <span class="fn">Welcome</span> <span class="kw">from</span> <span class="str">'./Welcome'</span>;
+
+<span class="kw">function</span> <span class="fn">App</span>() {
+  <span class="kw">return</span> (
+    &lt;<span class="tag">div</span>&gt;
+      &lt;<span class="tag">Welcome</span> name=<span class="str">"Jigar"</span> /&gt;
+      &lt;<span class="tag">Welcome</span> name=<span class="str">"React Learner"</span> /&gt;
+    &lt;/<span class="tag">div</span>&gt;
+  );
+}
+</code></pre>
+
+<hr>
+
+<h2>🎨 Styling with CSS</h2>
+<p>
+React lets you style components using normal CSS, inline styles, or external stylesheets.  
+You can also use CSS Modules or libraries like Tailwind for faster design.
+</p>
+
+<h3>🔹 1. External CSS File</h3>
+<pre><code>
+<span class="cmt">// App.css</span>
+<span class="tag">h2</span> {
+  color: <span class="str">#5a67d8</span>;
+  text-align: center;
+}
+</code></pre>
+
+<pre><code>
+<span class="cmt">// App.js</span>
+<span class="kw">import</span> <span class="str">'./App.css'</span>;
+
+<span class="kw">function</span> <span class="fn">App</span>() {
+  <span class="kw">return</span> (
+    &lt;<span class="tag">h2</span>&gt;Styled Heading&lt;/<span class="tag">h2</span>&gt;
+  );
+}
+</code></pre>
+
+<h3>🔹 2. Inline CSS</h3>
+<pre><code>
+&lt;<span class="tag">h2</span> style={{ color: <span class="str">'#5a67d8'</span>, textAlign: <span class="str">'center'</span> }}&gt;
+  Inline Styled Text
+&lt;/<span class="tag">h2</span>&gt;
+</code></pre>
+
+<h3>🔹 3. CSS Modules</h3>
+<pre><code>
+<span class="cmt">// App.module.css</span>
+<span class="tag">.heading</span> {
+  color: <span class="str">#5a67d8</span>;
+}
+</code></pre>
+
+<pre><code>
+<span class="kw">import</span> styles <span class="kw">from</span> <span class="str">'./App.module.css'</span>;
+
+&lt;<span class="tag">h2</span> className={styles.heading}&gt;Hello with Module&lt;/<span class="tag">h2</span>&gt;
+</code></pre>
+
+<hr>
+
+<h2>💨 Tailwind CSS Installation</h2>
+<p>
+Tailwind CSS is a utility-first CSS framework for rapidly building modern UIs.  
+It works perfectly with React projects created using <strong>Vite</strong> or <strong>Create React App</strong>.
+</p>
+
+<h3>⚙️ Steps to Install Tailwind (for Vite or CRA)</h3>
+
+<pre><code>
+<span class="cmt"># 1. Install Tailwind via npm</span>
+npm install -D tailwindcss postcss autoprefixer
+
+<span class="cmt"># 2. Initialize Tailwind config files</span>
+npx tailwindcss init -p
+</code></pre>
+
+<pre><code>
+<span class="cmt"># 3. Configure template paths (tailwind.config.js)</span>
+content: [<span class="str">"./index.html"</span>, <span class="str">"./src/**/*.{js,ts,jsx,tsx}"</span>],
+</code></pre>
+
+<pre><code>
+<span class="cmt"># 4. Add Tailwind to your CSS (index.css)</span>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre>
+
+<pre><code>
+<span class="cmt"># 5. Start your project</span>
+npm run dev
+</code></pre>
+
+<h3>💡 Example</h3>
+<pre><code>
+&lt;<span class="tag">h2</span> className=<span class="str">"text-2xl text-indigo-600 font-semibold text-center"</span>&gt;
+  Styled with Tailwind
+&lt;/<span class="tag">h2</span>&gt;
+</code></pre>
+
+
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p>Made with ☕ and curiosity — © 2025 Jigar</p>
+    </footer>
+
+    <script>
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    menuToggle.textContent = navLinks.classList.contains("open") ? "✖" : "☰";
+  });
+
+//   ---------------
+
+      // Theme toggle logic (persist in localStorage)
+      const toggleBtn = document.getElementById("theme-toggle");
+      const root = document.documentElement;
+      const saved = localStorage.getItem("theme"); // 'dark' or null
+      if (saved === "dark") {
+        document.body.classList.add("dark");
+        toggleBtn.textContent = "☀️";
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        const isDark = document.body.classList.contains("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "");
+        toggleBtn.textContent = isDark ? "☀️" : "🌙";
+      });
+
+      // Smooth scroll for internal links (optional)
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.querySelector(a.getAttribute("href"));
+          if (target)
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    </script>
+  </body>
+</html>
